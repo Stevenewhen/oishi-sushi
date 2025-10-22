@@ -130,13 +130,6 @@
       "description": "Snow crab & tempura shrimp inside; spicy tuna, avocado & eel sauce on top."
     },
     {
-      "id": "sea-bass-roll",
-      "name": "Sea Bass Roll",
-      "price": 10.99,
-      "tags": ["soyPaper", "raw"],
-      "description": "Fried and wrapped in soy paper."
-    },
-    {
       "id": "shannon-roll",
       "name": "Shannon Roll",
       "price": 6.99,
