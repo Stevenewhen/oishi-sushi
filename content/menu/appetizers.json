@@ -1,0 +1,14 @@
+{
+  "slug": "appetizers",
+  "title": "Appetizers",
+  "sort": 10,
+  "items": [
+    { "id": "baked-salmon", "name": "Baked Salmon", "price": 6.99 },
+    { "id": "edamame", "name": "Edamame", "price": 3.99 },
+    { "id": "eggplant-shrimp-miso", "name": "Eggplant Shrimp w/ Miso Sauce", "price": 6.99 },
+    { "id": "miso-soup", "name": "Miso Soup", "price": 3.99 },
+    { "id": "salmon-tartar", "name": "Salmon Tartar", "price": 6.99, "tags": ["raw"] },
+    { "id": "shrimp-tempura-app", "name": "Shrimp Tempura", "price": 5.99, "tags": ["deepFried"] }
+
+  ]
+}

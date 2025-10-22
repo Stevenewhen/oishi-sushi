@@ -1,0 +1,12 @@
+{
+  "slug": "sashimi",
+  "title": "Sashimi",
+  "sort": 60,
+  "items": [
+    { "id": "fresh-salmon-sashimi", "name": "Fresh Salmon (5)", "price": 10.99, "tags": ["raw"] },
+    { "id": "tuna-sashimi", "name": "Tuna (5)", "price": 10.99, "tags": ["raw"] },
+    { "id": "white-fish-sashimi", "name": "White Fish (5)", "price": 10.99, "tags": ["raw"] },
+    { "id": "yellowtail-sashimi", "name": "Yellowtail (5)", "price": 10.99, "tags": ["raw"] },
+     { "id": "sashimi-dinner-9pc", "name": "Chef's Sashimi Selection (9)", "price": 14.99, "tags": ["raw"] }
+  ]
+}

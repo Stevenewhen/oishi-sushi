@@ -1,0 +1,12 @@
+{
+  "slug": "salads",
+  "title": "Salads",
+  "sort": 20,
+  "items": [
+    { "id": "cucumber-salad", "name": "Cucumber Salad", "price": 3.99 },
+    { "id": "seaweed-salad", "name": "Seaweed Salad", "price": 4.99 },
+    { "id": "squid-salad", "name": "Squid Salad", "price": 5.99 },
+    { "id": "snowcrab-salad", "name": "Snowcrab Salad", "price": 6.99 },
+    { "id": "house-salad", "name": "House Salad", "price": 4.99 }
+  ]
+}

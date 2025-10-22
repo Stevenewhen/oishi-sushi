@@ -1,0 +1,16 @@
+{
+  "slug": "sushi",
+  "title": "Sushi (2 pcs)",
+  "sort": 52,
+  "items": [
+    { "id": "bbq-eel-sushi",       "name": "BBQ Eel (2)",        "price": 4.99 },
+    { "id": "crab-sushi",          "name": "Crab (2)",           "price": 4.99 },
+    { "id": "salmon-sushi",        "name": "Salmon (2)",         "price": 4.99, "tags": ["raw"] },
+    { "id": "shrimp-sushi",        "name": "Shrimp (2)",         "price": 4.99 },
+    { "id": "smelt-roe-sushi",     "name": "Smelt Roe (2)",      "price": 4.99 },
+    { "id": "smoked-salmon-sushi", "name": "Smoked Salmon (2)",  "price": 4.99 },
+    { "id": "tuna-sushi",          "name": "Tuna (2)",           "price": 4.99, "tags": ["raw"] },
+    { "id": "white-fish-sushi",    "name": "White Fish (2)",     "price": 4.99, "tags": ["raw"] },
+    { "id": "yellowtail-sushi",    "name": "Yellowtail (2)",     "price": 5.99, "tags": ["raw"] }
+  ]
+}

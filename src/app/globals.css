@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
 
 :root {
   --background: #ffffff;
@@ -24,3 +28,198 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bg-waves {
+  --c: rgba(255,255,255,0.025);
+  background:
+    radial-gradient(circle at 0 0, var(--c) 2px, transparent 2px) 0 0/24px 24px,
+    radial-gradient(circle at 12px 12px, var(--c) 2px, transparent 2px) 0 0/24px 24px,
+    #0b0f14;
+}
+
+/* ---- Oishi components (Tailwind @apply) ---- */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-sm font-medium transition;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/60;
+  }
+  .btn--lg { @apply px-5 py-2.5; }
+  .btn--sm { @apply px-3 py-1.5; }
+
+  .btn--primary { @apply border-transparent bg-red-600 text-white hover:bg-red-500 active:bg-red-700; }
+  .btn--secondary { @apply border-white/20 bg-white/5 hover:bg-white/10; }
+  .btn--ghost { @apply border-white/10 hover:bg-white/5; }
+
+  .chip {
+    @apply rounded-2xl border border-white/15 p-4 text-sm transition hover:bg-red-500/10 hover:border-red-600/40;
+  }
+
+  .card {
+    @apply rounded-2xl border border-white/15 p-5 bg-white/5;
+  }
+  .card-title {
+    @apply text-lg font-semibold mb-3;
+  }
+
+  .accent-top {
+    background:
+      linear-gradient(to right, rgb(220 38 38 / .6), transparent 40%) top/100% 2px no-repeat;
+  }
+
+  .link-nav { @apply opacity-90 hover:opacity-100 transition; }
+}
+
+@layer utilities {
+  .font-sushi { font-family: var(--font-sushi), ui-script, "Segoe Script", cursive; }
+}
+
+/* Background grid pattern */
+.bg-waves {
+  --c: rgba(255, 255, 255, 0.015);
+  background:
+    radial-gradient(circle at 0 0, var(--c) 2px, transparent 2px) 0 0/22px 22px,
+    radial-gradient(circle at 11px 11px, var(--c) 2px, transparent 2px) 0 0/22px 22px,
+    #0B0F14;
+}
+
+/* Hero glow behind logo */
+.hero-glow {
+  position: relative;
+}
+.hero-glow::before {
+  content: "";
+  position: absolute;
+  inset: -100px;
+  background: radial-gradient(circle at center, rgba(230,69,48,0.35), transparent 70%);
+  filter: blur(60px);
+  z-index: -1;
+}
+
+/* Buttons */
+.btn {
+  transition: all 0.2s ease;
+}
+.btn--primary {
+  background: linear-gradient(180deg, #E64530, #C63C27);
+  box-shadow: 0 0 15px rgba(230,69,48,0.3);
+}
+.btn--primary:hover {
+  background: linear-gradient(180deg, #FF6240, #E64530);
+  box-shadow: 0 0 25px rgba(255,98,64,0.4);
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+}
+.card:hover {
+  border-color: rgba(230,69,48,0.4);
+  box-shadow: 0 0 20px rgba(230,69,48,0.1);
+}
+
+/* Section headings */
+.card-title,
+h2 {
+  position: relative;
+  font-weight: 600;
+}
+.card-title::after,
+h2::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 60px;
+  margin-top: 4px;
+  background: linear-gradient(90deg, #E64530, #D6A14D);
+  border-radius: 1px;
+}
+
+/* Nav and footer */
+header {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+footer {
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/img/banner.png") center/cover no-repeat;
+  opacity: 0.1; /* adjust between 0.05–0.15 depending on brightness */
+  filter: grayscale(1) contrast(1.15) blur(1px);
+  z-index: -2; /* stays below gradient/pattern layers */
+  pointer-events: none; /* ensures no scroll blocking */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #f87171 !important; /* Sushi red */
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #fca5a5 !important; /* lighter hover tone */
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #f87171 !important; /* Sushi red active dot */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 36px;
+  height: 36px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  text-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+}
+
+/* Nicer details/summary indicator on mobile */
+details > summary::-webkit-details-marker { display: none; }
+details > summary::after {
+  content: "▾";
+  margin-left: .5rem;
+  opacity: .6;
+  transition: transform .2s ease;
+}
+details[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+/* Slight card hover lift */
+@media (hover: hover) {
+  .group:hover { transform: translateY(-1px); }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+

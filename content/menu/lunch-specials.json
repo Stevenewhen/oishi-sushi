@@ -1,0 +1,26 @@
+{
+  "slug": "lunch-specials",
+  "title": "Lunch Special",
+  "sort": 30,
+  "items": [
+    {
+      "id": "shrimp-tempura-lunch",
+      "name": "Shrimp Tempura",
+      "description": "Lunch special available 11:00 AM – 1:30 PM only",
+      "price": 10.95,
+      "tags": ["deepFried"]
+    },
+    {
+      "id": "unagi-don-lunch",
+      "name": "Unagi Don",
+      "description": "Lunch special available 11:00 AM – 1:30 PM only",
+      "price": 10.99
+    },
+    {
+      "id": "two-roll-combo",
+      "name": "Two Roll Combo",
+      "description": "Choose any 2: California, Crunchy, Fresh Salmon, Snow Crab, Shrimp Tempura, BBQ Eel.",
+      "price": 9.99
+    }
+  ]
+}

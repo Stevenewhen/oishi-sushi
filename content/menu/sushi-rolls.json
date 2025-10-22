@@ -1,0 +1,32 @@
+{
+  "slug": "sushi-rolls",
+  "title": "Sushi Rolls",
+  "sort": 50,
+  "items": [
+    { "id": "acadiana-roll", "name": "Acadiana Roll", "price": 6.99, "description": "Baked crawfish." },
+    { "id": "baked-salmon-roll", "name": "Baked Salmon Roll", "price": 6.99, "description": "Baked salmon." },
+    { "id": "bbq-eel-roll", "name": "BBQ Eel Roll", "price": 6.99, "description": "Barbeque eel and avacado." },
+    { "id": "bobby-roll", "name": "Bobby Roll", "price": 7.99, "description": "Snow crab with spicy salmon on top." },
+    { "id": "california-roll", "name": "California Roll", "price": 5.99, "description": "Crab, avocado, cucumber with smelt roe on top." },
+    { "id": "crunchy-roll", "name": "Crunchy Roll", "price": 5.99, "description": "Snow crab, avocado and crunchy tempura." },
+    { "id": "cucumber-roll", "name": "Cucumber Roll", "price": 4.99, "tags": ["vegetarian"], "description": "Cucumber." },
+    { "id": "dragon-roll", "name": "Dragon Roll", "price": 10.99, "description": "Tempura shrimp with BBQ eel on top." },
+    { "id": "dynamite-roll", "name": "Dynamite Roll", "price": 5.99, "description": "Baked marinated seafood." },
+    { "id": "elizabeth-roll", "name": "Elizabeth Roll", "price": 7.99, "description": "Spicy snow crab with crunchy tempura and avocado on top." },
+    { "id": "fathers-roll", "name": "Father's Roll", "price": 9.99, "tags": ["deepFried"], "description": "Crawfish, cream cheese and jalapeño. Fried." },
+    { "id": "fresh-salmon-roll", "name": "Fresh Salmon Roll", "price": 5.99, "tags": ["raw"], "description": "Fresh salmon and avocado." },
+    { "id": "katherine-roll", "name": "Katherine Roll", "price": 10.99, "tags": ["raw"], "description": "Snow crab with fresh salmon on top." },
+    { "id": "karen-roll", "name": "Karen Roll", "price": 8.99, "tags": ["raw"], "description": "Salmon, tuna, snow crab, avocado and smelt roe wrapped in cucumber." },
+    { "id": "lt-roll", "name": "LT Roll", "price": 10.99, "tags": ["raw"], "description": "Tempura shrimp, snow crab and cream cheese; topped with tuna & avocado, sesame seeds & eel sauce." },
+    { "id": "marlayna-roll", "name": "Marlayna Roll", "price": 7.99, "description": "Snow crab with avocado on top." },
+    { "id": "philadelphia-roll", "name": "Philadelphia Roll", "price": 5.99, "tags": ["raw"], "description": "Avocado, smoked salmon and cream cheese." },
+    { "id": "rainbow-roll", "name": "Rainbow Roll", "price": 10.99, "tags": ["raw"], "description": "Avocado, crab with salmon, whitefish and tuna on top." },
+    { "id": "scott-roll", "name": "Scott Roll", "price": 7.99, "tags": ["deepFried"], "description": "Fried spicy tuna with cream cheese." },
+    { "id": "shrimp-tempura-roll", "name": "Shrimp Tempura Roll", "price": 5.99, "tags": ["deepFried"], "description": "Fried shrimp, cucumber and spicy mayo." },
+    { "id": "snow-crab-roll", "name": "Snow Crab Roll", "price": 6.99, "description": "Snow crab and avocado." },
+    { "id": "spider-roll", "name": "Spider Roll", "price": 8.99, "tags": ["deepFried"], "description": "Soft shell crab, cucumber, spicy mayo and smelt roe." },
+    { "id": "spicy-tuna-roll", "name": "Spicy Tuna Roll", "price": 6.99, "tags": ["raw"], "description": "Marinated tuna." },
+    { "id": "tuna-roll", "name": "Tuna Roll", "price": 5.99, "tags": ["raw"], "description": "Tuna with green onion." },
+    { "id": "vegetable-roll", "name": "Vegetable Roll", "price": 5.99, "tags": ["vegetarian"], "description": "Cucumber, asparagus, kampyo and avocado." }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "slug": "sushi-rolls-with-soypaper",
+  "title": "Sushi Rolls (Soy Paper)",
+  "sort": 51,
+  "items": [
+    {
+      "id": "big-daddy-roll",
+      "name": "Big Daddy",
+      "price": 10.99,
+      "tags": ["soyPaper"],
+      "description": "Tempura shrimp & crawfish with cream cheese, snow crab and avocado."
+    },
+    {
+      "id": "brandon-roll",
+      "name": "Brandon Roll",
+      "price": 8.99,
+      "tags": ["soyPaper"],
+      "description": "Fried soft-shell crab, snow crab paste and avocado."
+    },
+    {
+      "id": "camille-roll",
+      "name": "Camille Roll",
+      "price": 10.99,
+      "tags": ["soyPaper"],
+      "description": "Snow crab and cucumber with avocado and strawberry on top."
+    },
+    {
+      "id": "crazy-roll",
+      "name": "Crazy Roll",
+      "price": 7.99,
+      "tags": ["soyPaper"],
+      "description": "Spicy tuna and tempura shrimp."
+    },
+    {
+      "id": "hawaiian-roll",
+      "name": "Hawaiian",
+      "price": 10.99,
+      "tags": ["soyPaper"],
+      "description": "Tempura coconut shrimp, cream cheese & snow crab inside; mango on top."
+    },
+    {
+      "id": "heidi-roll",
+      "name": "Heidi",
+      "price": 10.99,
+      "tags": ["soyPaper"],
+      "description": "Spicy crunchy fried shrimp, avocado and snow crab with mixed nuts on top."
+    },
+    {
+      "id": "hettie-roll",
+      "name": "Hettie Roll",
+      "price": 8.99,
+      "tags": ["soyPaper", "deepFried"],
+      "description": "Fried shrimp, jalapeño, cream cheese, snow crab & spicy mayo."
+    },
+    {
+      "id": "hunter-roll",
+      "name": "Hunter",
+      "price": 10.99,
+      "tags": ["soyPaper", "raw"],
+      "description": "Fried shrimp, spicy tuna & avocado inside; snow crab, tempura crunch & eel sauce on top."
+    },
+    {
+      "id": "jazz-roll",
+      "name": "Jazz Roll",
+      "price": 7.99,
+      "tags": ["soyPaper"],
+      "description": "Snow crab paste, boiled shrimp and asparagus."
+    },
+    {
+      "id": "jesti-roll",
+      "name": "Jesti Roll",
+      "price": 7.99,
+      "tags": ["soyPaper"],
+      "description": "Smoked salmon, crab and cream cheese."
+    },
+    {
+      "id": "jj-roll",
+      "name": "JJ Roll",
+      "price": 10.99,
+      "tags": ["soyPaper"],
+      "description": "Tempura shrimp & crawfish, jalapeño and cream cheese; mixed nuts on top."
+    },
+    {
+      "id": "julie-roll",
+      "name": "Julie Roll",
+      "price": 8.99,
+      "tags": ["soyPaper"],
+      "description": "Cream cheese, snow crab, fried shrimp and spicy mayo with avocado."
+    },
+    {
+      "id": "lobster-roll",
+      "name": "Lobster Roll",
+      "price": 10.99,
+      "tags": ["soyPaper", "deepFried"],
+      "description": "Fried lobster with snow crab and asparagus."
+    },
+    {
+      "id": "lorie-roll",
+      "name": "Lorie Roll",
+      "price": 7.99,
+      "tags": ["soyPaper"],
+      "description": "Tempura shrimp, snow crab and smelt roe."
+    },
+    {
+      "id": "mothers-roll",
+      "name": "Mother's Roll",
+      "price": 10.99,
+      "tags": ["soyPaper", "deepFried"],
+      "description": "Fried soft-shell crab with special cream cheese (onion, butter & garlic)."
+    },
+    {
+      "id": "mount-fuji-roll",
+      "name": "Mount Fuji Roll",
+      "price": 10.99,
+      "tags": ["soyPaper"],
+      "description": "Snow crab paste, avocado and tempura crunch inside; tempura shrimp & melted Swiss on top."
+    },
+    {
+      "id": "oishi-roll",
+      "name": "Oishi Roll",
+      "price": 9.99,
+      "tags": ["soyPaper", "raw"],
+      "description": "Spicy snow crab paste, tempura shrimp, BBQ eel and avocado."
+    },
+    {
+      "id": "rodney-roll",
+      "name": "Rodney Roll",
+      "price": 10.99,
+      "tags": ["soyPaper", "raw"],
+      "description": "Snow crab & tempura shrimp inside; spicy tuna, avocado & eel sauce on top."
+    },
+    {
+      "id": "sea-bass-roll",
+      "name": "Sea Bass Roll",
+      "price": 10.99,
+      "tags": ["soyPaper", "raw"],
+      "description": "Fried and wrapped in soy paper."
+    },
+    {
+      "id": "shannon-roll",
+      "name": "Shannon Roll",
+      "price": 6.99,
+      "tags": ["soyPaper"],
+      "description": "Snow crab paste, avocado, crunchy tempura and cream cheese."
+    },
+    {
+      "id": "shrek-roll",
+      "name": "Shrek",
+      "price": 10.99,
+      "tags": ["soyPaper"],
+      "description": "Spicy snow crab, avocado and tempura shrimp inside; crab meat & kiwi on top."
+    },
+    {
+      "id": "tiger-eye-roll",
+      "name": "Tiger Eye Roll",
+      "price": 8.99,
+      "tags": ["soyPaper"],
+      "description": "Smoked salmon, jalapeño, cream cheese and smelt roe."
+    }
+  ]
+}
