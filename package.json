@@ -2,9 +2,9 @@
   "name": "oishi-sushi",
   "version": "0.1.0",
   "private": true,
-    "scripts": {
+  "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build"
   },
   "dependencies": {
     "next": "15.5.4",
