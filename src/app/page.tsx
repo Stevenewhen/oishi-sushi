@@ -1,3 +1,4 @@
+// src/app/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -52,31 +53,25 @@ export default function Home() {
   return (
     <>
       <main className="min-h-dvh">
-        {/* Hero Section */}
-        <section className="relative isolate overflow-hidden hero-bg">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:18px_18px]" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-background" />
-          </div>
-
+        {/* Hero Section (background is now global via <SiteBackground />) */}
+        <section className="relative isolate overflow-hidden">
           <div className="mx-auto max-w-6xl px-4 py-14 sm:py-18 lg:py-22">
             <div className="flex flex-col items-center text-center gap-5">
-
               {/* Logo */}
               <div className="text-center leading-tight">
-  <div className="flex items-end justify-center gap-2 flex-nowrap">
-    <div className="hero-glow">
-      <Image
-        src="/img/oishi-logo.png"
-        alt="Oishi Sushi"
-        width={320}               // adjust as you like
-        height={96}
-        className="h-16 w-auto sm:h-24 mx-auto"
-        priority                  // above the fold, good for LCP
-      />
-    </div>
-  </div>
-</div>
+                <div className="flex items-end justify-center gap-2 flex-nowrap">
+                  <div className="hero-glow">
+                    <Image
+                      src="/img/oishi-logo.png"
+                      alt="Oishi Sushi"
+                      width={320}
+                      height={96}
+                      className="h-16 w-auto sm:h-24 mx-auto"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                 <a href={TEL} className="btn btn--lg btn--primary">
@@ -109,7 +104,6 @@ export default function Home() {
                   { href: "/menu#sushi-rolls", label: "🍣 Sushi Rolls" },
                   { href: "/menu#sashimi", label: "🍱 Sashimi" },
                   { href: "/menu#combination-dinners", label: "🍱 Combination Dinners" },
-               
                 ].map((c) => (
                   <Link key={c.href} href={c.href} className="chip">
                     {c.label}
@@ -205,7 +199,6 @@ export default function Home() {
             spaceBetween={16}
             slidesPerView={1}
             navigation
-            // pagination={{ clickable: true }}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
             loop={true}
             breakpoints={{
