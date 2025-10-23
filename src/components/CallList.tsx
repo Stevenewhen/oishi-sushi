@@ -1,7 +1,7 @@
 // src/components/CallList.tsx
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 export type Price = number | { sm?: number; md?: number; lg?: number };
 
@@ -189,6 +189,26 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
   }, 0);
   const showSoyNote = nonSoyQty >= 1;
 
+  // --- NEW: animate the red pill when totalQty increases ---
+  const pillRef = useRef<HTMLButtonElement | null>(null);
+  const prevQtyRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (prevQtyRef.current === null) {
+      prevQtyRef.current = totalQty; // skip first render
+      return;
+    }
+    const prev = prevQtyRef.current;
+    if (totalQty > prev && pillRef.current) {
+      const el = pillRef.current;
+      el.classList.remove("anim-pill-pop");
+      // force reflow to restart animation
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      void el.offsetWidth;
+      el.classList.add("anim-pill-pop");
+    }
+    prevQtyRef.current = totalQty;
+  }, [totalQty]);
+
   if (totalQty === 0) return null;
 
   return (
@@ -197,12 +217,13 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
       <div className="fixed inset-x-0 bottom-3 z-40 flex justify-center px-3">
         <div className="flex items-center gap-3 rounded-full border border-red-500/40 bg-black/60 backdrop-blur px-3 py-1.5 text-sm shadow-lg shadow-black/30">
           <button
-            className="rounded-full bg-red-600/90 px-3 py-1 text-white hover:bg-red-600"
-            onClick={() => setOpen(true)}
-            aria-expanded={open}
-          >
-            Your list · {totalQty} item{totalQty > 1 ? "s" : ""}
-          </button>
+  ref={pillRef}
+  className="rounded-full bg-red-600/90 px-3 py-1 text-white hover:bg-red-600"
+  onClick={() => setOpen(true)}
+  aria-expanded={open}
+>
+  Your list · {totalQty} item{totalQty > 1 ? "s" : ""}
+</button>
           <span className="opacity-80 tabular-nums">Est. ${grand.toFixed(2)}</span>
           <a
             href={telHref}
@@ -287,7 +308,7 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
               <div className="opacity-80 tabular-nums space-y-0.5">
                 <div>Subtotal: <strong>${est.toFixed(2)}</strong></div>
                 <div>Tax (9%): <strong>${tax.toFixed(2)}</strong></div>
-                <div className="text-base">Total: <strong>${grand.toFixed(2)}</strong></div>
+                <div className="text-base">Total: <strong>${(est + tax).toFixed(2)}</strong></div>
               </div>
               <div className="flex gap-2">
                 <button

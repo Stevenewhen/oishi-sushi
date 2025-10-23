@@ -222,4 +222,70 @@ details[open] > summary::after {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
+@keyframes pill-bump {
+  0%   { transform: scale(1); }
+  15%  { transform: scale(1.08); }
+  35%  { transform: scale(0.98); }
+  55%  { transform: scale(1.04); }
+  75%  { transform: scale(0.995); }
+  100% { transform: scale(1); }
+}
+@keyframes pill-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-2px); }
+  40%      { transform: translateX(2px); }
+  60%      { transform: translateX(-1px); }
+  80%      { transform: translateX(1px); }
+}
+.anim-pill-pop {
+  animation: pill-bump 320ms ease, pill-shake 320ms ease;
+}
 
+/* --- Nintendo-style add animation: squash, pop, tiny wiggle, settle --- */
+:root {
+  /* nice springy easing */
+  --ease-out-back: cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes pill-nintendo-bump {
+  0%   { transform: translateX(0) scale(1) rotate(0deg); }
+  /* quick squash before launch */
+  12%  { transform: translateX(0) scale(1.10, .92) rotate(0deg); }
+  /* pop up & overshoot */
+  28%  { transform: translateX(0) scale(.96, 1.08) rotate(0.6deg); }
+  /* tiny wiggle */
+  42%  { transform: translateX(0) scale(1.02, .98) rotate(-0.6deg); }
+  58%  { transform: translateX(0) scale(.995, 1.005) rotate(0.3deg); }
+  /* settle */
+  100% { transform: translateX(0) scale(1) rotate(0deg); }
+}
+
+/* optional soft glow that joins the party */
+@keyframes pill-nintendo-glow {
+  0%   { box-shadow: 0 0 0 rgba(230,69,48,0); }
+  20%  { box-shadow: 0 0 18px rgba(230,69,48,.35); }
+  60%  { box-shadow: 0 0 10px rgba(230,69,48,.18); }
+  100% { box-shadow: 0 0 0 rgba(230,69,48,0); }
+}
+
+/* use your existing class name so no JS changes needed */
+.anim-pill-pop {
+  animation:
+    pill-nintendo-bump 560ms var(--ease-out-back) both,
+    pill-nintendo-glow 560ms ease-out both;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .anim-pill-pop {
+    animation: pill-nintendo-glow 450ms ease-out both;
+  }
+}
+
+/* globals.css — add somewhere in @layer utilities or near the bottom */
+@layer utilities {
+  .font-mario { font-family: var(--font-mario), ui-monospace, SFMono-Regular, Menlo, Monaco, "DejaVu Sans Mono", "Liberation Mono", "Courier New", monospace; }
+}
+
+/* optional: a subtle arcade-y glow for numbers */
+.mario-glow { text-shadow: 0 1px 0 rgba(0,0,0,.25), 0 0 8px rgba(255,255,255,.15); }
