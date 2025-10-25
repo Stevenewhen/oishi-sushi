@@ -17,16 +17,10 @@ const TEL = "tel:+13372620106";
 const ADDRESS = "924 Kaliste Saloom Rd, Lafayette, LA 70508";
 const PLACE_ID = "ChIJi8UWUQadJIYR-3Oul30V0Sc";
 
-const MAPS_SEARCH_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  ADDRESS
-)}`;
+// Only keep Directions since that's the one that works reliably
 const MAPS_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
   ADDRESS
 )}`;
-const MAPS_PLACE_URL = PLACE_ID
-  ? `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(PLACE_ID)}`
-  : "";
-const MAPS_URL = MAPS_PLACE_URL || MAPS_SEARCH_URL;
 
 const HOURS: { day: string; time: string }[] = [
   { day: "Mon", time: "11:00 AM – 1:30 PM, 5:00 PM – 8:00 PM" },
@@ -80,14 +74,7 @@ export default function Home() {
                 <Link href="/menu" className="btn btn--lg btn--secondary">
                   View Menu
                 </Link>
-                <a
-                  href={MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--lg btn--ghost"
-                >
-                  Open in Maps
-                </a>
+                {/* Removed "Open in Maps" — keep a single Directions button */}
                 <a
                   href={MAPS_DIRECTIONS_URL}
                   target="_blank"
@@ -102,8 +89,9 @@ export default function Home() {
                 {[
                   { href: "/menu#appetizers", label: "🥟 Appetizers" },
                   { href: "/menu#sushi-rolls", label: "🍣 Sushi Rolls" },
-                  { href: "/menu#sashimi", label: "🍱 Sashimi" },
+                  { href: "/menu#box-combos", label: "🍱 Box Combos" },
                   { href: "/menu#combination-dinners", label: "🍱 Combination Dinners" },
+                  { href: "/menu#sashimi", label: "🍱 Sashimi" }
                 ].map((c) => (
                   <Link key={c.href} href={c.href} className="chip">
                     {c.label}
@@ -158,13 +146,14 @@ export default function Home() {
               </div>
 
               <div className="mt-3 flex gap-2">
+                {/* Replace the "Open in Maps" button with Directions */}
                 <a
-                  href={MAPS_URL}
+                  href={MAPS_DIRECTIONS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn--secondary"
                 >
-                  Open in Maps
+                  Directions
                 </a>
                 <Link href="/menu" className="btn btn--ghost">
                   See Menu
@@ -176,9 +165,15 @@ export default function Home() {
             <div className="card accent-top">
               <h2 className="card-title">Ordering</h2>
               <ul className="text-sm space-y-2">
-                <li>• <strong>Takeout only</strong></li>
-                <li>• <strong>No dine-in seating</strong></li>
-                <li>• <strong>No delivery</strong> (DoorDash/UberEats not available)</li>
+                <li>
+                  • <strong>Takeout only</strong>
+                </li>
+                <li>
+                  • <strong>No dine-in seating</strong>
+                </li>
+                <li>
+                  • <strong>No delivery</strong> (DoorDash/UberEats not available)
+                </li>
                 <li>
                   • Please call ahead:{" "}
                   <a href={TEL} className="underline">

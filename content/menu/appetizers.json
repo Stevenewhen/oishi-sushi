@@ -8,7 +8,7 @@
     { "id": "eggplant-shrimp-miso", "name": "Eggplant Shrimp w/ Miso Sauce", "price": 6.99 },
     { "id": "miso-soup", "name": "Miso Soup", "price": 3.99 },
     { "id": "salmon-tartar", "name": "Salmon Tartar", "price": 6.99, "tags": ["raw"] },
-    { "id": "shrimp-tempura-app", "name": "Shrimp Tempura", "price": 5.99, "tags": ["deepFried"] }
+    { "id": "shrimp-tempura-app", "name": "Shrimp Tempura","description": "3 Piece Tempura Shrimp w/ Tempura Vegetables", "price": 5.99, "tags": ["deepFried"] }
 
   ]
 }

@@ -57,6 +57,9 @@ export default function AddOrChooseButton({
   const [picks, setPicks] = useState<string[]>([]);
   const [side, setSide] = useState<SideChoice | null>(cfg?.needsSide ? "miso" : null);
 
+  // NEW: local bump animation for the + button
+  const [bump, setBump] = useState(false); // NEW
+
   // ✅ Hooks must be called on every render (even when !cfg)
   const nameById = useMemo(() => {
     const map = new Map<string, string>();
@@ -72,12 +75,21 @@ export default function AddOrChooseButton({
       .filter((x) => !needle || x.name.toLowerCase().includes(needle));
   }, [cfg?.choices, nameById, q]);
 
-  // If this item doesn't need choices, behave like tiny "+" but include tags
+  // Simple add (no chooser)
   if (!cfg) {
     return (
       <button
-        onClick={() => add({ id: item.id, name: item.name, price: item.price, tags: item.tags })}
-        className="h-8 w-8 rounded-full border border-white/15 bg-white/10 hover:bg-white/15 active:scale-[0.98] grid place-items-center"
+        onClick={() => {
+          add({ id: item.id, name: item.name, price: item.price, tags: item.tags });
+          // fire global event so the pill can shake
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(new CustomEvent("calllist:added"));
+          }
+          // local + button bump
+          setBump(true);
+          setTimeout(() => setBump(false), 340);
+        }}
+        className={`h-8 w-8 rounded-full border border-white/15 bg-white/10 hover:bg-white/15 active:scale-[0.98] grid place-items-center ${bump ? "anim-pill-pop" : ""}`}
         aria-label={`Add ${item.name}`}
         title={`Add ${item.name}`}
       >
@@ -105,8 +117,12 @@ export default function AddOrChooseButton({
       name: item.name,
       price: item.price,
       details,
-      // combos don’t carry tags themselves
     });
+
+    // fire global event so the pill can shake
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("calllist:added"));
+    }
 
     setOpen(false);
     setPicks([]);
@@ -121,7 +137,7 @@ export default function AddOrChooseButton({
     <>
       <button
         onClick={() => setOpen(true)}
-        className="h-8 w-8 rounded-full border border-white/15 bg-white/10 hover:bg-white/15 active:scale-[0.98] grid place-items-center"
+        className={`h-8 w-8 rounded-full border border-white/15 bg-white/10 hover:bg-white/15 active:scale-[0.98] grid place-items-center ${bump ? "anim-pill-pop" : ""}`}
         aria-label={`Choose options for ${item.name}`}
         title={`Choose options for ${item.name}`}
       >
@@ -139,11 +155,6 @@ export default function AddOrChooseButton({
               </div>
               <button className="h-8 w-8 grid place-items-center rounded-full border border-white/15 hover:bg-white/5" onClick={() => setOpen(false)} aria-label="Close">✕</button>
             </div>
-
-            {/* Search (optional UI; keep state for future) */}
-            {/* <div className="px-3 py-2">
-              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search rolls…" className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm" />
-            </div> */}
 
             {/* Roll choices */}
             <div className="max-h-[50vh] overflow-y-auto px-3 pb-3">
@@ -192,7 +203,17 @@ export default function AddOrChooseButton({
 
             <div className="p-3 border-t border-white/10 flex items-center justify-end gap-2">
               <button onClick={() => { setPicks([]); setQ(""); setSide(cfg.needsSide ? "miso" : null); }} className="btn btn--ghost px-3 py-1.5 text-sm">Clear</button>
-              <button onClick={confirm} disabled={!canConfirm} className={["px-4 py-1.5 rounded-md text-sm transition border", canConfirm ? "border-red-500/60 bg-red-600 text-white hover:bg-red-500" : "border-white/15 bg-white/5 opacity-60 cursor-not-allowed"].join(" ")}>
+              <button
+                onClick={() => {
+                  if (!canConfirm) return;
+                  confirm();
+                  // local + button bump on confirm (show feedback on opener too)
+                  setBump(true);
+                  setTimeout(() => setBump(false), 340);
+                }}
+                disabled={!canConfirm}
+                className={["px-4 py-1.5 rounded-md text-sm transition border", canConfirm ? "border-red-500/60 bg-red-600 text-white hover:bg-red-500" : "border-white/15 bg-white/5 opacity-60 cursor-not-allowed"].join(" ")}
+              >
                 Add to List
               </button>
             </div>

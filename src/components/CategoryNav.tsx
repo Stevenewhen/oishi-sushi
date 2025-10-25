@@ -15,7 +15,7 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
 
-  // --- NEW: desktop auto-fit refs/state ---
+  // --- desktop auto-fit refs/state ---
   const desktopWrapRef = useRef<HTMLDivElement | null>(null);
   const desktopRowRef = useRef<HTMLUListElement | null>(null);
   const [scale, setScale] = useState(1);
@@ -56,30 +56,25 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
     }
   };
 
-  // --- NEW: Fit chips on ONE LINE by scaling the row if needed ---
+  // Fit chips on ONE LINE by scaling the row if needed
   useEffect(() => {
     const wrap = desktopWrapRef.current;
     const row = desktopRowRef.current;
     if (!wrap || !row) return;
 
     const fit = () => {
-      // available width vs total needed width
       const avail = wrap.clientWidth;
       const needed = row.scrollWidth;
       if (!avail || !needed) return;
 
-      // Slight padding margin so it never wraps accidentally
       const raw = Math.min(1, (avail - 4) / needed);
-      // Don’t let it get *too* tiny; tweak min to taste
       const next = Math.max(raw, 0.84);
 
       setScale(next);
-      // Keep parent’s height stable when scaling
       const h = row.getBoundingClientRect().height;
       setScaledHeight(h * next);
     };
 
-    // initial + responsive
     fit();
     const ro = new ResizeObserver(fit);
     ro.observe(wrap);
@@ -98,7 +93,7 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
                  bg-background/70 backdrop-blur border-b border-white/10"
       aria-label="Menu categories"
     >
-      {/* Mobile: themed dropdown (button + popover) */}
+      {/* Mobile: red dropdown (button + popover) */}
       <div className="sm:hidden">
         <div className="relative">
           <button
@@ -107,14 +102,20 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
             aria-haspopup="listbox"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="w-full rounded-xl border border-white/20 bg-white/10
-                       px-4 pr-11 py-3 text-base leading-6
-                       text-white hover:bg-white/15 focus:outline-none
-                       focus:ring-2 focus:ring-white/30 focus:border-white/30"
+            className={cx(
+              "w-full rounded-xl px-4 pr-11 py-3 text-base leading-6 text-white",
+              "border border-transparent",
+              // Sushi red gradient + glow
+              "bg-gradient-to-b from-[#E64530] to-[#C63C27] shadow-[0_0_15px_rgba(230,69,48,0.30)]",
+              "hover:from-[#FF6240] hover:to-[#E64530] hover:shadow-[0_0_22px_rgba(255,98,64,0.40)]",
+              "active:from-[#E64530] active:to-[#B53521]",
+              // Focus ring in red
+              "focus:outline-none focus:ring-2 focus:ring-red-500/60"
+            )}
           >
             {active ? (cats.find((c) => c.slug === active)?.title ?? "…") : "Jump to…"}
             <svg
-              className="pointer-events-none absolute right-7 top-[18px] h-5 w-5 opacity-80"
+              className="pointer-events-none absolute right-7 top-[18px] h-5 w-5 opacity-95"
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden="true"
@@ -128,7 +129,7 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
               ref={listRef}
               role="listbox"
               tabIndex={-1}
-              className="absolute left-0 right-0 mt-2 rounded-xl border border-white/15
+              className="absolute left-0 right-0 mt-2 rounded-xl border border-red-500/30
                          bg-zinc-900/95 backdrop-blur shadow-xl overflow-hidden"
             >
               <div className="max-h-[60vh] overflow-y-auto overscroll-contain">
@@ -141,9 +142,9 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
                       aria-selected={isActive}
                       onClick={() => goTo(opt.slug)}
                       className={cx(
-                        "w-full text-left px-4 py-3 text-[15px] leading-6 text-white",
-                        "hover:bg-white/10 focus:bg-white/10 focus:outline-none",
-                        isActive ? "bg-white/15" : "bg-transparent"
+                        "w-full text-left px-4 py-3 text-[15px] leading-6 text-white transition-colors",
+                        "hover:bg-red-500/10 focus:bg-red-500/15 focus:outline-none",
+                        isActive ? "bg-red-500/15 border-l-2 border-red-500/70" : "bg-transparent"
                       )}
                     >
                       {opt.title}
@@ -156,8 +157,11 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
         </div>
 
         {active && (
-          <p className="mt-1.5 text-xs text-white/70">
-            Viewing: <span className="font-semibold text-white">{cats.find((c) => c.slug === active)?.title}</span>
+          <p className="mt-1.5 text-xs text-white/80">
+            Viewing:{" "}
+            <span className="font-semibold text-white">
+              {cats.find((c) => c.slug === active)?.title}
+            </span>
           </p>
         )}
       </div>
@@ -185,8 +189,8 @@ export default function CategoryNav({ cats }: { cats: Cat[] }) {
                   }}
                   className={cx(
                     "px-3 py-1.5 rounded-full border whitespace-nowrap transition-colors",
-                    "border-white/10 bg-white/5 hover:bg-white/10",
-                    isActive && "bg-white/10 border-white/20"
+                    "border-white/10 bg-white/5 hover:bg-red-500/10 hover:border-red-500/40",
+                    isActive && "bg-red-500/15 border-red-500/50"
                   )}
                 >
                   {c.title}
