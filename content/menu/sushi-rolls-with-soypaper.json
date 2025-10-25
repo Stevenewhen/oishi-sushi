@@ -22,7 +22,7 @@
       "name": "Camille Roll",
       "price": 10.99,
       "tags": ["soyPaper"],
-      "description": "Snow crab and cucumber with avocado and strawberry on top."
+      "description": "Snow crab and cucumber; avocado and strawberry on top."
     },
     {
       "id": "crazy-roll",
@@ -43,7 +43,7 @@
       "name": "Heidi",
       "price": 10.99,
       "tags": ["soyPaper"],
-      "description": "Spicy crunchy fried shrimp, avocado and snow crab with mixed nuts on top."
+      "description": "Spicy crunchy fried shrimp and avocado; snow crab and mixed nuts on top."
     },
     {
       "id": "hettie-roll",
@@ -83,9 +83,9 @@
     {
       "id": "julie-roll",
       "name": "Julie Roll",
-      "price": 8.99,
+      "price": 10.99,
       "tags": ["soyPaper"],
-      "description": "Cream cheese, snow crab, fried shrimp and spicy mayo with avocado."
+      "description": "Cream cheese, snow crab and fried shrimp with spicy mayo; avocado on top."
     },
     {
       "id": "lobster-roll",
@@ -118,7 +118,7 @@
     {
       "id": "oishi-roll",
       "name": "Oishi Roll",
-      "price": 9.99,
+      "price": 10.99,
       "tags": ["soyPaper", "raw"],
       "description": "Spicy snow crab paste, tempura shrimp, BBQ eel and avocado."
     },
@@ -146,7 +146,7 @@
     {
       "id": "tiger-eye-roll",
       "name": "Tiger Eye Roll",
-      "price": 8.99,
+      "price": 6.99,
       "tags": ["soyPaper"],
       "description": "Smoked salmon, jalapeño, cream cheese and smelt roe."
     }

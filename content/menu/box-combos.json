@@ -1,0 +1,41 @@
+{
+  "slug": "box-combos",
+  "title": "Box Combos",
+  "sort": 35,
+  "items": [
+    {
+      "id": "kellog-box",
+      "name": "Kellog Box",
+      "price": 10.99,
+      "description": "Box sushi with spicy tuna, topped with salmon (6 pieces)",
+      "tags": ["raw"]
+    },
+    {
+      "id": "salmon-box",
+      "name": "Salmon Box",
+      "price": 10.99,
+      "description": "Box sushi with snow crab and crunchy, topped with salmon (6 pieces)",
+      "tags": ["raw"]
+    },
+    {
+      "id": "shrimp-box",
+      "name": "Shrimp Box",
+      "price": 10.99,
+      "description": "Box sushi with snow crab and crunchy, topped with shrimp (6 pieces)"
+    },
+    {
+      "id": "tuna-box",
+      "name": "Tuna Box",
+      "price": 10.99,
+      "description": "Box sushi with snow crab and crunchy, topped with tuna (6 pieces)",
+      "tags": ["raw"]
+    },
+    {
+      "id": "yellowtail-box",
+      "name": "Yellowtail Box",
+      "price": 10.99,
+      "description": "Box sushi with snow crab and crunchy, topped with yellowtail (6 pieces)",
+      "tags": ["raw"]
+    }
+  ]
+}

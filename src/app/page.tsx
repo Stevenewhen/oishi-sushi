@@ -89,8 +89,9 @@ export default function Home() {
                 {[
                   { href: "/menu#appetizers", label: "🥟 Appetizers" },
                   { href: "/menu#sushi-rolls", label: "🍣 Sushi Rolls" },
-                  { href: "/menu#sashimi", label: "🍱 Sashimi" },
+                  { href: "/menu#box-combos", label: "🍱 Box Combos" },
                   { href: "/menu#combination-dinners", label: "🍱 Combination Dinners" },
+                  { href: "/menu#sashimi", label: "🍱 Sashimi" }
                 ].map((c) => (
                   <Link key={c.href} href={c.href} className="chip">
                     {c.label}
