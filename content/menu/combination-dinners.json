@@ -15,8 +15,8 @@
       "price": 22.99,
       "description": "Choose any 3 premium rolls. Served with miso soup or house salad."
     },
-    { "id": "sushi-combo-1", "name": "Sushi Combination #1", "price": 10.99, "tags": ["raw"] },
-    { "id": "sushi-combo-2", "name": "Sushi Combination #2", "price": 14.99, "tags": ["raw"] },
-    { "id": "sushi-combo-3", "name": "Sushi Combination #3", "price": 14.99, "tags": ["raw"] }
+    { "id": "sushi-combo-1", "name": "Sushi Combination #1","description": "California Roll and Sushi (4) Tuna, Salmon, Whitefish, & Eel.", "price": 10.99, "tags": ["raw"] },
+    { "id": "sushi-combo-2", "name": "Sushi Combination #2","description": "California Roll and Sushi (7) Tuna, Salmon, Yellowtail, Whitefish, Eel, Crabstick, & Shrimp.", "price": 14.99, "tags": ["raw"] },
+    { "id": "sushi-combo-3", "name": "Sushi Combination #3","description": "Chirashi Sushi (9 Sashimi w/ Rice). Tuna (3), Salmon (3), & Whitefish (3)", "price": 14.99, "tags": ["raw"] }
   ]
 }
