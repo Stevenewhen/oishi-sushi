@@ -60,7 +60,7 @@ export default function Home() {
                       alt="Oishi Sushi"
                       width={320}
                       height={96}
-                      className="h-16 w-auto sm:h-24 mx-auto"
+                      className="w-40 h-auto sm:w-52 mx-auto"
                       priority
                     />
                   </div>
