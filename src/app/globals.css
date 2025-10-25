@@ -289,3 +289,9 @@ details[open] > summary::after {
 
 /* optional: a subtle arcade-y glow for numbers */
 .mario-glow { text-shadow: 0 1px 0 rgba(0,0,0,.25), 0 0 8px rgba(255,255,255,.15); }
+
+.font-mario {
+  font-family: var(--font-mario), monospace;
+  letter-spacing: -0.03em;
+  font-size: 0.7rem; /* or whatever you like */
+}

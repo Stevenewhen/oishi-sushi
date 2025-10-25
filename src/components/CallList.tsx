@@ -109,6 +109,9 @@ async function copyTextToClipboard(text: string): Promise<boolean> {
 export function CallListProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<ListItem[]>([]);
 
+  // NEW: audio ref for pop sound
+  const popRef = useRef<HTMLAudioElement | null>(null);
+
   useEffect(() => {
     try {
       const raw = localStorage.getItem("oishi-call-list");
@@ -125,7 +128,17 @@ export function CallListProvider({ children }: { children: React.ReactNode }) {
   const api = useMemo<Ctx>(
     () => ({
       items,
-      add: (it) =>
+      add: (it) => {
+        // play the pop sound when something is added
+        if (popRef.current) {
+          popRef.current.currentTime = 0;
+          popRef.current.volume = 0.5; // not too loud
+          popRef.current.play().catch(() => {
+            // ignore playback errors (mobile autoplay rules, etc.)
+          });
+        }
+
+        // update state
         setItems((prev) => {
           const i = prev.findIndex((p) => p.id === it.id);
           if (i >= 0) {
@@ -134,8 +147,12 @@ export function CallListProvider({ children }: { children: React.ReactNode }) {
             return next;
           }
           return [...prev, { ...it, qty: 1 }];
-        }),
-      inc: (id) => setItems((prev) => prev.map((p) => (p.id === id ? { ...p, qty: p.qty + 1 } : p))),
+        });
+      },
+      inc: (id) =>
+        setItems((prev) =>
+          prev.map((p) => (p.id === id ? { ...p, qty: p.qty + 1 } : p))
+        ),
       dec: (id) =>
         setItems((prev) =>
           prev
@@ -148,7 +165,14 @@ export function CallListProvider({ children }: { children: React.ReactNode }) {
     [items]
   );
 
-  return <CallListCtx.Provider value={api}>{children}</CallListCtx.Provider>;
+  return (
+    <CallListCtx.Provider value={api}>
+      {children}
+
+      {/* NEW: hidden audio element that lives once at the provider root */}
+      <audio ref={popRef} src="/pop-sound.wav" preload="auto" />
+    </CallListCtx.Provider>
+  );
 }
 
 export function useCallList() {
@@ -162,7 +186,9 @@ export function AddToListButton(props: { id: string; name: string; price: Price;
   const { add } = useCallList();
   return (
     <button
-      onClick={() => add({ id: props.id, name: props.name, price: props.price, tags: props.tags })}
+      onClick={() =>
+        add({ id: props.id, name: props.name, price: props.price, tags: props.tags })
+      }
       className="h-8 w-8 rounded-full border border-white/15 bg-white/10 hover:bg-white/15 active:scale-[0.98] grid place-items-center"
       aria-label={`Add ${props.name}`}
       title={`Add ${props.name}`}
@@ -189,21 +215,19 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
   }, 0);
   const showSoyNote = nonSoyQty >= 1;
 
-  // --- NEW: animate the red pill when totalQty increases ---
+  // --- pill bump animation stuff
   const pillRef = useRef<HTMLButtonElement | null>(null);
   const prevQtyRef = useRef<number | null>(null);
   useEffect(() => {
     if (prevQtyRef.current === null) {
-      prevQtyRef.current = totalQty; // skip first render
+      prevQtyRef.current = totalQty; // first render only
       return;
     }
     const prev = prevQtyRef.current;
     if (totalQty > prev && pillRef.current) {
       const el = pillRef.current;
       el.classList.remove("anim-pill-pop");
-      // force reflow to restart animation
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      void el.offsetWidth;
+      void el.offsetWidth; // force reflow to restart animation
       el.classList.add("anim-pill-pop");
     }
     prevQtyRef.current = totalQty;
@@ -217,13 +241,13 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
       <div className="fixed inset-x-0 bottom-3 z-40 flex justify-center px-3">
         <div className="flex items-center gap-3 rounded-full border border-red-500/40 bg-black/60 backdrop-blur px-3 py-1.5 text-sm shadow-lg shadow-black/30">
           <button
-  ref={pillRef}
-  className="rounded-full bg-red-600/90 px-3 py-1 text-white hover:bg-red-600"
-  onClick={() => setOpen(true)}
-  aria-expanded={open}
->
-  Your list · {totalQty} item{totalQty > 1 ? "s" : ""}
-</button>
+            ref={pillRef}
+            className="rounded-full bg-red-600/90 px-3 py-1 text-white hover:bg-red-600"
+            onClick={() => setOpen(true)}
+            aria-expanded={open}
+          >
+            Your list · {totalQty} item{totalQty > 1 ? "s" : ""}
+          </button>
           <span className="opacity-80 tabular-nums">Est. ${grand.toFixed(2)}</span>
           <a
             href={telHref}
@@ -234,7 +258,7 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
         </div>
       </div>
 
-      {/* Drawer (mobile) / Modal (desktop) */}
+      {/* Drawer / Modal */}
       {open && (
         <div
           className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
@@ -306,9 +330,15 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
 
             <div className="mt-3 flex items-center justify-between">
               <div className="opacity-80 tabular-nums space-y-0.5">
-                <div>Subtotal: <strong>${est.toFixed(2)}</strong></div>
-                <div>Tax (9%): <strong>${tax.toFixed(2)}</strong></div>
-                <div className="text-base">Total: <strong>${(est + tax).toFixed(2)}</strong></div>
+                <div>
+                  Subtotal: <strong>${est.toFixed(2)}</strong>
+                </div>
+                <div>
+                  Tax (9%): <strong>${tax.toFixed(2)}</strong>
+                </div>
+                <div className="text-base">
+                  Total: <strong>${(est + tax).toFixed(2)}</strong>
+                </div>
               </div>
               <div className="flex gap-2">
                 <button
@@ -326,7 +356,11 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
                     window.setTimeout(() => setCopied(null), 1500);
                   }}
                 >
-                  {copied === "ok" ? "Copied!" : copied === "err" ? "Copy failed" : "Copy list"}
+                  {copied === "ok"
+                    ? "Copied!"
+                    : copied === "err"
+                    ? "Copy failed"
+                    : "Copy list"}
                 </button>
                 <button
                   className="rounded-md border border-red-600/50 bg-red-600/10 px-3 py-1 hover:bg-red-600/20 text-sm"
@@ -343,7 +377,8 @@ export function CallListFloatingBar({ telHref }: { telHref: string }) {
                 <div className="flex items-start gap-2">
                   <span className="mt-0.5">📜</span>
                   <p className="leading-5">
-                    Swap any roll to soy paper for <strong>+$0.50 per roll</strong>. Just mention it when you call.
+                    Swap any roll to soy paper for <strong>+$0.50 per roll</strong>. Just mention
+                    it when you call.
                   </p>
                 </div>
               </div>
