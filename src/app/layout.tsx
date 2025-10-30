@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     siteName: "Oishi Sushi",
     title: "Oishi Sushi",
     description: "Fresh nigiri, classic rolls, and chef specials—made to order.",
-    images: [
+      images: [
       {
-        url: "/img/og.jpg",
+        url: "/img/og.png",
         width: 1200,
         height: 630,
         alt: "Oishi Sushi",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Oishi Sushi",
     description: "Fresh nigiri, classic rolls, and chef specials—made to order.",
-    images: ["/img/og.jpg"],
+  images: ["/img/og.png"],
   },
   applicationName: "Oishi Sushi",
   icons: { icon: "/favicon.ico" },
